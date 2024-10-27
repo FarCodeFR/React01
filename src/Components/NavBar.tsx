@@ -1,10 +1,8 @@
-import { useState } from "react";
+// import { useState } from "react";
 
-interface pokemonProps {
-  pokemon: {
-    name: string;
-    imgSrc?: string;
-  };
+interface pokemon {
+  name: string;
+  imgSrc?: string;
 }
 
 interface NavBarProps {
@@ -12,26 +10,22 @@ interface NavBarProps {
   button: () => void;
   button2: () => void;
   pokemonListLength: number; // Passer uniquement la longeur du tableau
+  pokemonList: pokemon[];
+  setPokemonIndex: (index: number) => void;
 }
 
-function NavBar({
-  pokemonIndex,
-  button,
-  button2,
-  pokemonListLength,
-}: NavBarProps) {
+function NavBar({ pokemonList, setPokemonIndex }: NavBarProps) {
   return (
     <nav>
-      {pokemonIndex > 0 && (
-        <button type="button" className="first" onClick={button2}>
-          Précédent
-        </button>
-      )}
-      {pokemonIndex < pokemonListLength - 1 && (
-        <button type="button" className="second" onClick={button}>
-          Suivant
-        </button>
-      )}
+      <ul>
+        {pokemonList.map((pokemon, index) => (
+          <li key={pokemon.name}>
+            <button onClick={() => setPokemonIndex(index)} type="button">
+              {pokemon.name}
+            </button>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }
