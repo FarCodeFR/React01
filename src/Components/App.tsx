@@ -1,6 +1,7 @@
 import PokemonCard from "./PokemonCard";
 import { useState } from "react";
 import NavBar from "./NavBar";
+import { useEffect } from "react";
 
 const pokemonList = [
   {
@@ -31,6 +32,19 @@ const pokemonList = [
 function App() {
   const [pokemonIndex, setPokemonIndex] = useState(0);
 
+  useEffect(() => {
+    alert("hello pokemon trainer :)");
+  }, []);
+
+  // Fonction pour gérer la sélection d'un Pokémon
+  const choixPokemonIndex = (index) => {
+    setPokemonIndex(index);
+    // Vérification si le Pokémon sélectionné est "pikachu"
+    if (pokemonList[index].name.toLowerCase() === "pikachu") {
+      alert("pika pikachu !!!");
+    }
+  };
+
   const handleClick = () => {
     setPokemonIndex(pokemonIndex + 1);
     console.log(pokemonIndex);
@@ -43,7 +57,7 @@ function App() {
   return (
     <>
       <NavBar
-        setPokemonIndex={setPokemonIndex}
+        setPokemonIndex={choixPokemonIndex}
         pokemonList={pokemonList}
         pokemonIndex={pokemonIndex}
         pokemonListLength={pokemonList.length}
