@@ -1,5 +1,7 @@
 // import { useState } from "react";
 
+import PokemonCard from "./PokemonCard";
+
 interface pokemon {
   name: string;
   imgSrc?: string;
